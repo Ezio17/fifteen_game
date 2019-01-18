@@ -12,7 +12,7 @@ let numbers = [];
 function game(e) {
   numbers = [];
   let empty = document.querySelector('.last');
-  const winCombonation = [
+  const firstWinCombination = [
     '1',
     '2',
     '3',
@@ -29,6 +29,25 @@ function game(e) {
     '14',
     '15',
     '',
+  ];
+
+  const secondWinCombination = [
+    '',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
   ];
 
   function findEmptyPosition() {
@@ -72,7 +91,10 @@ function game(e) {
 
   findNumbers();
 
-  if (JSON.stringify(winCombonation) == JSON.stringify(numbers)) {
+  if (
+    JSON.stringify(firstWinCombination) == JSON.stringify(numbers) ||
+    JSON.stringify(secondWinCombination) == JSON.stringify(numbers)
+  ) {
     alert('Победа! Вы победили за: ' + (moveCount - '1') + ' ходов и ' + timerCount + ' секунд!');
 
     clearInterval(seconds);
@@ -94,6 +116,8 @@ button.onclick = function() {
   let span = document.querySelectorAll('span');
   let td = document.querySelectorAll('td');
 
+  let arrTd = [...td];
+
   let randomNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   function compareRandom() {
@@ -106,7 +130,7 @@ button.onclick = function() {
   });
 
   findNumbers = function() {
-    td.forEach(function(item, i) {
+    arrTd.forEach(function(item, i) {
       numbers.push(item.textContent);
     });
   };
